@@ -10,19 +10,20 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import com.example.orderup.componentes.CardProduct
 import com.example.orderup.componentes.OrderScaffold
 import com.example.orderup.dummy.menu
+import com.example.orderup.model.Producto
 
 
 @Composable
 fun MenuLista(
-    navigateToOrden: () -> Unit
+    navigateToOrden: (List<Producto>) -> Unit
 ) {
-    val cantidadTotal = rememberSaveable { mutableIntStateOf(0) }
-
+    val productoSeleccionados = rememberSaveable {mutableStateListOf<Producto>() }
     OrderScaffold(
         titulo = "OrderUp!"
     ) { padding ->
@@ -41,7 +42,7 @@ fun MenuLista(
                         nombre,
                         precio,
                         contador,
-                        itemsAgregados = { cantidadTotal.value += 1 })
+                        itemsAgregados = { productoSeleccionados.add(producto)})
                 }
 
 
@@ -51,10 +52,10 @@ fun MenuLista(
             Button(
                 modifier = Modifier.fillMaxWidth()
                     .weight(1f),
-                onClick = { navigateToOrden() }
+                onClick = { navigateToOrden(productoSeleccionados) }
             ) {
                 Text(
-                    text = "Ver mi orden | Productos actuales:${cantidadTotal.value} "
+                    text = "Ver mi orden | Productos actuales:${productoSeleccionados.size} "
                 )
             }
         }

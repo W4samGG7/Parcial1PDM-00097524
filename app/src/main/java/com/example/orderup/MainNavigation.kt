@@ -18,15 +18,16 @@ fun MenuApp() {
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
         entryProvider = entryProvider {
-            entry<Routes.Menu> { key ->
+            entry<Routes.Menu> {
                 MenuLista(
-                    navigateToOrden = {
-                        backStack.add(Routes.Orden)
+                    navigateToOrden = { key ->
+                        backStack.add(Routes.Orden(productosSeleccionado = key))
                     }
                 )
             }
             entry<Routes.Orden> { key ->
                 ordenScren(
+                    productos = key.productosSeleccionado,
                     navigateToMenu = {
                         backStack.removeLastOrNull()
                     }

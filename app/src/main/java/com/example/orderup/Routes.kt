@@ -9,5 +9,5 @@ sealed class Routes : NavKey {
     data object Menu : Routes()
 
     @Serializable
-    data object Orden : Routes()
+    data class Orden(val productosSeleccionado: List<Producto>) : Routes()
 }
