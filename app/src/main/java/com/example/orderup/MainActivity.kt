@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             OrderUpTheme {
-                    MenuLista(menu)
+                   MenuApp()
             }
         }
     }

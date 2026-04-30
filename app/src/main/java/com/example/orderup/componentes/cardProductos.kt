@@ -1,6 +1,5 @@
 package com.example.orderup.componentes
 
-import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -13,14 +12,16 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.example.orderup.dummy.menu
 import com.example.orderup.model.Producto
 import com.example.orderup.model.TipoProducto
@@ -29,10 +30,11 @@ import com.example.orderup.model.TipoProducto
 fun CardProduct(
     imagen: String,
     nombre: String,
-    precio: String
+    precio: String,
+    contador: MutableIntState,
 ){
     Card(
-    modifier = Modifier.fillMaxWidth().clickable(onClick = {}),
+    modifier = Modifier.fillMaxWidth().clickable(onClick = {contador.value = contador.value + 1}),
     ) {
         Row(
             modifier = Modifier.padding(20.dp).fillMaxWidth(),
@@ -51,12 +53,10 @@ fun CardProduct(
                 text = precio,
 
             )
+            Text(
+                text = "${contador.value}",
+            )
         }
     }
 }
 
-@Preview
-@Composable
-fun CardProductPreview(){
-    CardProduct( "x","Pupusa de queso", "$20.0")
-}
