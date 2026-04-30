@@ -20,8 +20,15 @@ fun MenuApp() {
         entryProvider = entryProvider {
             entry<Routes.Menu> { key ->
                 MenuLista(
-                    navigateToComprar = {
+                    navigateToOrden = {
                         backStack.add(Routes.Orden)
+                    }
+                )
+            }
+            entry<Routes.Orden> { key ->
+                ordenScren(
+                    navigateToMenu = {
+                        backStack.removeLastOrNull()
                     }
                 )
 
