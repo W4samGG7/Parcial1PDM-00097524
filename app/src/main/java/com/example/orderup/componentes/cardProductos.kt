@@ -32,9 +32,13 @@ fun CardProduct(
     nombre: String,
     precio: String,
     contador: MutableIntState,
+    itemsAgregados: () -> Unit
 ){
     Card(
-    modifier = Modifier.fillMaxWidth().clickable(onClick = {contador.value = contador.value + 1}),
+    modifier = Modifier.fillMaxWidth().clickable(onClick = {
+        contador.value += 1
+        itemsAgregados()
+    }),
     ) {
         Row(
             modifier = Modifier.padding(20.dp).fillMaxWidth(),
