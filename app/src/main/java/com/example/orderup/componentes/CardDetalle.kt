@@ -31,16 +31,20 @@ fun CardDetalle(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
+                modifier = Modifier.weight(1f),
                 text = productoFinal.nombre
             )
             Text(
+                modifier = Modifier.weight(1f),
                 text = "$${productoFinal.precio}"
                 )
             Text(
+                modifier = Modifier.weight(1f),
                 text = cantidad.toString(),
             )
             val subtotal = productoFinal.precio * cantidad
             Text(
+                modifier = Modifier.weight(1f),
                 text = "$${subtotal}"
             )
         }

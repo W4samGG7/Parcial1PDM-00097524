@@ -31,12 +31,11 @@ fun CardProduct(
     imagen: String,
     nombre: String,
     precio: String,
-    contador: MutableIntState,
+    contador: Int,
     itemsAgregados: () -> Unit
 ){
     Card(
     modifier = Modifier.fillMaxWidth().clickable(onClick = {
-        contador.value += 1
         itemsAgregados()
     }),
     ) {
@@ -46,19 +45,23 @@ fun CardProduct(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             AsyncImage(
-                modifier = Modifier.size(50.dp ),
+                modifier = Modifier.size(75.dp ).weight(1.5f).padding(5.dp),
+                alignment = Alignment.Center,
                 model = imagen,
                 contentDescription = "imagen del producto mostrado"
             )
             Text(
+                modifier = Modifier.weight(1f).padding(5.dp),
                 text = nombre
             )
             Text(
+                modifier = Modifier.weight(1f).padding(5.dp),
                 text = precio,
 
             )
             Text(
-                text = "${contador.value}",
+                modifier = Modifier.weight(1f).padding(5.dp),
+                text = "${contador}",
             )
         }
     }

@@ -29,7 +29,8 @@ fun MenuApp() {
                 ordenScren(
                     productos = key.productosSeleccionado,
                     navigateToMenu = {
-                        backStack.removeLastOrNull()
+                        backStack.clear()
+                        backStack.add(Routes.Menu)
                     }
                 )
 
